@@ -1,0 +1,124 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block title %}Employee Details{% endblock title %}
+{% block content %}
+
+<div class="sectionPadding container">
+        
+    <div class="sideBar">
+       <div class="top">
+        <div class="logo">
+            <a href=""><img src="{% static 'media/icons/companyLogo.png' %}" alt="logo"></a>
+        </div>
+        <div class="btns">
+            <div class="btn">
+                <a href=""><img src="{% static 'media/icons/home.png' %}" alt="one"></a>
+            </div>
+            <div class="btn">
+                <a href="admin/office_data/"><img src="{% static 'media/icons/office.png' %}" alt="one"></a>
+            </div>
+            <div class="btn">
+                <a href="admin/payRoll_data/salary/"><img src="{% static 'media/icons/money.png' %}" alt="one"></a>
+            </div>
+            
+           
+        </div>
+       </div>
+        <div class="bottom dateTimeInfo">
+            <span>{{cur_date}}</span>
+            
+        </div>
+    </div>
+    <div class="content">
+        <div class="header">
+            <div class="navigationBar">
+                <div class="navigationTitle rightSide">
+                    
+                </div>
+                <div class="navigationLinks leftside">
+                    <div class="user">
+                        <div class="userInfo">
+                            <div class="userName">
+                                <span>{{request.user.first_name}}</span>
+                            </div>
+                            <div class="userRole">
+                                <span>Adminstarions</span>
+                            </div>
+                        </div>
+                        <div class="userPic">
+                            <div class="img">
+                                <img src="{% static 'media/icons/user.png' %}" alt="logo">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btns">
+                        <div class="userSwitch">
+                            <a href=""><span>Logout</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="inside">
+            <div class="header">
+                <div class="left">
+                    <span class="title">All Employees</span>
+                </div>
+                <div class="right">
+                    <div class="search">
+                        <form action="{% url 'view_employee' %}">
+                        <input class="searchBox" placeholder="Search..." name="search" type="text">
+                        <input class="searchBtn" type="submit">
+                    </form>
+                    </div>
+                    <div class="addBtn">
+                        
+                        <button><a href="admin/employee_data/employee/add/">Add </a></button>
+                    </div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="table">
+                    <table>
+                        <thead>
+                            <th>#</th>
+                            <th>First Name</th>
+                            <th>Role</th>
+                            <th>Department</th>
+                            <th>Branch</th>
+                            <th>Phone</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </thead>
+                        {% for i in employees  %}
+                        <tbody>
+                            <tr>
+                                <td>{{i.u_id}}</td>
+                                <td>
+                                    <a href="admin/employee_data/employee/{{i.u_id}}/change/">
+                                    {{i.first_name}}
+                                    </a>
+                                </td>
+                                <td>{{i.role}}</td>
+                                <td>{{i.department}}</td>
+                                <td>{{i.branch}}</td>
+                                <td>{{i.contact_number}}</td>
+                                <td><a href="admin/employee_data/employee/{{i.u_id}}/change/"><div class="editIcon">
+                                    <img src="{% static 'media/icons/editing.png'%}" alt="edit"></div>
+                                </a></td>
+                                <td><a href="deleteEmp/{{i.u_id}}"><div class="editIcon">
+                                    <img src="{% static 'media/icons/trash.png'%}" alt="edit"></div>
+                                </a></td>
+                            </tr>
+                        </tbody>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+

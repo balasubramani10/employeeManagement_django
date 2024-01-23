@@ -1,0 +1,194 @@
+{% extends "base/base.html" %}
+{% block title %}Add Employee{% endblock title %}
+{% block content %}
+
+<div class="sectionPadding container">
+        
+    <div class="sideBar">
+       <div class="top">
+        <div class="logo">
+            <a href=""><img src="/meida/companyLogo.png" alt="logo"></a>
+        </div>
+        <div class="btns">
+            <div class="btn">
+                <a href=""><img src="/meida/home.png" alt="one"></a>
+            </div>
+            <div class="btn">
+                <a href=""><img src="/meida/employee.png" alt="one"></a>
+            </div>
+            <div class="btn">
+                <a href=""><img src="/meida/money.png" alt="one"></a>
+            </div>
+            <div class="btn">
+                <a href=""><img src="/meida/money.png" alt="one"></a>
+            </div>
+            <div class="btn">
+                <a href=""><img src="/meida/home.png" alt="one"></a>
+            </div>
+        </div>
+       </div>
+        <div class="bottom dateTimeInfo">
+            <span>01-01-1998</span>
+            <span>00:00:00</span>
+        </div>
+    </div>
+    <div class="content">
+        <div class="header">
+            <div class="navigationBar">
+                <div class="navigationTitle rightSide">
+                    
+                </div>
+                <div class="navigationLinks leftside">
+                    <div class="user">
+                        <div class="userInfo">
+                            <div class="userName">
+                                <span>Full Example Name</span>
+                            </div>
+                            <div class="userRole">
+                                <span>Adminstarions</span>
+                            </div>
+                        </div>
+                        <div class="userPic">
+                            <div class="img">
+                                <img src="/meida/user.png" alt="logo">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btns">
+                        <div class="userSwitch">
+                            <a href=""><span>Logout</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="inside">
+            <div class="header">
+                <div class="left">
+                    <span class="title">Update Employee</span>
+                </div>
+                <div class="right">
+                    <div class="search">
+                        <input class="searchBox" placeholder="Search..." type="text">
+                        <input class="searchBtn" type="submit">
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="info">
+            <form method="POST">
+                {% csrf_token %}
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="first_name" required>
+        
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="last_name" required>
+        
+                <label for="father_name">Father Name:</label>
+                <input type="text" id="lastName" name="father_name" required>
+        
+                <label for="email">Personal Email:</label>
+                <input type="email" id="email" name="personal_email_id" required>
+        
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="contact_no" required>
+        
+                <label for="address">Address Line 1:</label>
+                <input type="text" id="address" name="add_line1" required>
+
+                <label for="address">Address Line 2:</label>
+                <input type="text" id="address" name="add_line2" required>
+
+                <label for="address">Landmark:</label>
+                <input type="text" id="address" name="add_landmark" required>
+
+                <label for="address">City:</label>
+                <input type="text" id="address" name="add_city" required>
+
+                <label for="address">Pincode:</label>
+                <input type="text" id="address" name="add_pincode" required>
+
+                
+                
+                <label for="state">State:</label>
+                <select id="state" name="add_state" required>
+                    <option value="" disabled selected>Select State</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                    <option value="Assam">Assam</option>
+                    <option value="Bihar">Bihar</option>
+                    <option value="Chhattisgarh">Chhattisgarh</option>
+                    <option value="Goa">Goa</option>
+                    <option value="Gujarat">Gujarat</option>
+                    <option value="Haryana">Haryana</option>
+                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                    <option value="Jharkhand">Jharkhand</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Kerala">Kerala</option>
+                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="Manipur">Manipur</option>
+                    <option value="Meghalaya">Meghalaya</option>
+                    <option value="Mizoram">Mizoram</option>
+                    <option value="Nagaland">Nagaland</option>
+                    <option value="Odisha">Odisha</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="Rajasthan">Rajasthan</option>
+                    <option value="Sikkim">Sikkim</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Telangana">Telangana</option>
+                    <option value="Tripura">Tripura</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="Uttarakhand">Uttarakhand</option>
+                    <option value="West Bengal">West Bengal</option>
+                </select>
+        
+                <label for="role">Role:</label>
+                <select id="role" name="role" required>
+                    <option value="" disabled selected>Select Role</option>
+                    {% for i in designation %}
+                    <option value="{{i.designation}}">{{i.designation}}</option>
+                    {% endfor %}
+                    
+                </select>
+        
+                <label for="branch">Branch:</label>
+                <select id="branch" name="branch" required>
+                    <option value="" disabled selected>Select Branch</option>
+                    {% for i in branches %}
+                    <option value="{{i}}">{{i}}</option>
+                    {% endfor %}
+                    
+                </select>
+
+                <label for="department">Department:</label>
+                <select id="department" name="department" required>
+                    <option value="" disabled selected>Select Department</option>
+                    {% for i in department %}
+                    <option value="{{i}}">{{i}}</option>
+                    {% endfor %}
+                    
+                </select>
+
+                <label for="manager">Manager:</label>
+                <select id="reportingTO" name="reporting" required>
+                    <option value="" disabled selected>Select Manager</option>
+                    {% for i in employees %}
+                    <option value="{{i}}">{{i}}</option>
+                    {% endfor %}
+                    
+                </select>
+        
+                <label for="salary">Salary:</label>
+                <input type="number" id="salary" name="salary" required>
+        
+                <button type="submit">Update Employee</button>
+            </form>
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
